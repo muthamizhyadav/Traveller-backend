@@ -143,6 +143,17 @@ const UpdateTopFivePlaces = async (id, body) => {
   return values;
 };
 
+const getPlaces_By_State = async (id) => {
+  let values = await Tourist.aggregate([
+    {
+      $match: {
+        stateId: id,
+      },
+    },
+  ]);
+  return values;
+};
+
 module.exports = {
   createTourist,
   getAllTourist,
@@ -151,4 +162,5 @@ module.exports = {
   get_Top_Five_places,
   Fetch_placesWith_state,
   UpdateTopFivePlaces,
+  getPlaces_By_State,
 };
