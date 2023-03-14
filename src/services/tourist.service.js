@@ -65,7 +65,15 @@ const get_Top_Five_places = async () => {
       },
     },
   ]);
-  return data;
+  let value = await Tourist.aggregate([
+    {
+      $match: {
+        placeCategory: 'hills',
+        popular: true,
+      },
+    },
+  ]);
+  return { topFive: data, popularHills: value };
 };
 
 // get places with states
